@@ -24,8 +24,8 @@
   );
   --bg-gradient-jet: linear-gradient(
     to bottom right,
-    hsla(233, 18%, 18%, 0.3) 0%,  /* Slightly lighter shade with adjusted transparency */
-    hsla(233, 18%, 18%, 0) 100%   /* Fully transparent slightly lighter shade */
+    hsla(206, 17%, 18%, 0.3) 0%,  /* Slightly lighter shade with adjusted transparency */
+    hsla(148, 18%, 38%, 0) 100%   /* Fully transparent slightly lighter shade */
   ), hsl(233.51, 23.01%, 16.5%);  /* Slightly darker shade fallback */
   --bg-gradient-yellow-1: linear-gradient(
     to bottom right,
@@ -55,7 +55,7 @@
   --jet: hsl(233, 16%, 18%);
   --onyx: hsl(233, 18%, 27%);
   --eerie-black-1: hsl(233.68, 24.68%, 20%);
-  --eerie-black-2: hsl(233.68, 24.68%, 15.10%);
+  --eerie-black-2: hsl(233, 37%, 17%);
   --smoky-black: hsl(233.68, 24.68%, 15.10%);
   --white-1: hsl(233, 10%, 98%);
   --white-2: hsl(233, 10%, 94%);
@@ -64,7 +64,7 @@
   --light-gray: hsl(231, 15%, 82%);
   --light-gray-70: hsla(233, 10%, 70%, 0.7);
   --bittersweet-shimmer: hsl(0, 43%, 51%);
-  --name-normal: hsl(182, 52%, 47%);
+  --name-normal: hsl(187, 52%, 47%);
   --name-highlight: hsl(46, 91%, 64%);
   --download-button:    hsl(233.68, 24.68%, 18%);
   --download-button-active:  hsl(233.68, 24.68%, 13%);
@@ -471,6 +471,34 @@ main {
 
 .social-item .social-link:hover { color: var(--light-gray); }
 
+/* SVG icons styles */
+.social-list svg {
+  width: 24px; /* w-6 en Tailwind */
+  height: 24px; /* h-6 en Tailwind */
+  cursor: pointer;
+  fill: var(--light-gray); /* Equivalente a text-gray-400 */
+}
+
+/* Estilos de hover para cada red social */
+.social-item:nth-child(1) svg:hover {
+  fill: #6e5494; /* GitHub */
+}
+
+.social-item:nth-child(2) svg:hover {
+  fill: #000000; /* X (Twitter) */
+}
+
+.social-item:nth-child(3) svg:hover {
+  fill: #E4405F; /* Instagram */
+}
+
+.social-item:nth-child(4) svg:hover {
+  fill: #0A66C2; /* LinkedIn */
+}
+
+.social-item:nth-child(5) svg:hover {
+  fill: #1877F2; /* Facebook */
+}
 
 
 
@@ -484,9 +512,9 @@ main {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: hsl(233.68, 24.68%, 30%, 0.75);
-  /*background: hsl(253.68, 24.68%, 40%); /* purple */
-  /* background: hsl(213.68, 24.68%, 40%); /* blue */
+  /* background: hsla(282, 24%, 30%, 0.75);  */
+  background: hsl(253.68, 24.68%, 40%); /* purple */
+  /*background: hsl(213.68, 24.68%, 40%); /* blue */
   backdrop-filter: blur(10px);
   border: 1px solid var(--jet);
   border-radius: 12px 12px 0 0;
@@ -877,40 +905,207 @@ main {
  * skills
  */
 
-.skills-title { margin-bottom: 20px; }
+/* Estilos mejorados para la sección de formación complementaria */
+.skills-title { 
+  margin-bottom: 25px; 
+  position: relative;
+}
 
-.skills-list { padding: 20px; }
+.skills-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--text-gradient-yellow);
+  border-radius: 3px;
+}
 
+.skills-list { 
+  padding: 25px;
+  border-radius: 16px;
+  background: var(--bg-gradient-jet);
+}
 
-.skills-item:not(:last-child) { margin-bottom: 15px; }
+.skills-item {
+  transition: transform 0.3s ease;
+  border-left: 2px solid transparent;
+  padding-left: 15px;
+  border-radius: 2px;
+}
+
+.skills-item:hover {
+  transform: translateX(5px);
+  border-left: 2px solid var(--aqua-teal-1);
+}
+
+.skills-item:not(:last-child) { 
+  margin-bottom: 22px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--jet);
+}
 
 .skill .title-wrapper {
   display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.course-icon-box {
+  min-width: 36px;
+  height: 36px;
+  background: var(--eerie-black-1);
+  border-radius: 8px;
+  display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 8px;
+  justify-content: center;
+  color: var(--aqua-teal-1);
+  font-size: 18px;
+  margin-top: 2px;
 }
 
-.skill .title-wrapper data {
-  color: var(--light-gray);
+.course-info {
+  flex: 1;
+}
+
+.course-info h5 {
+  font-size: var(--fs-5);
+  margin-bottom: 5px;
+  color: var(--white-1);
+  font-weight: var(--fw-500);
+}
+
+.course-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--light-gray-70);
   font-size: var(--fs-7);
-  font-weight: var(--fw-300);
 }
 
-.skill-progress-bg {
-  background: var(--jet);
-  width: 100%;
-  height: 8px;
+.course-details span {
+  position: relative;
+}
+
+.course-details span:not(:last-child)::after {
+  content: "•";
+  margin-left: 8px;
+}
+
+.course-details .institution {
+  color: var(--my-teal-2);
+  font-weight: var(--fw-400);
+}
+
+.course-details .year {
+  padding: 2px 8px;
   border-radius: 10px;
+  font-size: var(--fs-8);
 }
 
-.skill-progress-fill {
-  background: var(--text-gradient-yellow);
+.course-details .year.current {
+  background: rgba(77, 184, 182, 0.1);
+  color: var(--aqua-teal-1);
+}
+/* tarjetas
+/* Estilos de tarjetas para formación complementaria */
+.course-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.course-card {
+  background: var(--bg-gradient-jet);
+  border-radius: 14px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--jet);
   height: 100%;
-  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
 }
 
+.course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: var(--aqua-teal-1);
+  transition: height 0.3s ease;
+}
 
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-3);
+}
+
+.course-card:hover::before {
+  height: 100%;
+}
+
+.course-icon {
+  font-size: 24px;
+  color: var(--aqua-teal-1);
+  margin-bottom: 15px;
+}
+
+.course-title {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-500);
+  color: var(--white-1);
+  margin-bottom: 10px;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: var(--fs-7);
+}
+
+.course-institution {
+  color: var(--my-teal-2);
+  font-weight: var(--fw-500);
+}
+
+.course-duration {
+  color: var(--light-gray-70);
+}
+
+.course-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  font-size: var(--fs-8);
+}
+
+.course-location {
+  color: var(--light-gray);
+}
+
+.course-year {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: var(--fw-500);
+}
+
+.course-year.current {
+  background: rgba(77, 184, 182, 0.1);
+  color: var(--aqua-teal-1);
+}
 
 
 
